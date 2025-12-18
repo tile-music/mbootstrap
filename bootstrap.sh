@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# Store the directory where this script is located
+# store the directory where this script is located
 BOOTSTRAP_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # install deps
@@ -28,3 +28,10 @@ sudo systemctl enable musicbrainz.service
 
 # start
 docker compose up -d
+
+# run initial index
+sudo touch /var/log/musicbrainz-index.log
+sudo chown "$USER":"$USER" /var/log/musicbrainz-index.log
+cd /opt/musicbrainz-docker && \
+  sudo docker compose exec -T indexer \
+  python -m sir reindex --entity-type release >> /var/log/musicbrainz-index.log 2>&1
