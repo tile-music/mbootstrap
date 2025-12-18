@@ -1,0 +1,3 @@
+0 4 * * * root cd /opt/musicbrainz-docker && \
+  docker compose exec -T indexer \
+  python -m sir reindex --entity-type release >> /var/log/musicbrainz-index.log 2>&1
