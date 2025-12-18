@@ -30,8 +30,8 @@ This setup:
 ```bash
 # clone this repo
 cd ~
-git clone <YOUR_REPO_URL>
-cd musicbrainz-server
+git clone https://github.com/tile-music/mbootstrap.git
+cd mbootstrap
 
 # run bootstrap
 chmod +x bootstrap.sh
